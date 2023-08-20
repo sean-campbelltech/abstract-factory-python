@@ -7,9 +7,10 @@ from spain_factory import SpainFactory
 class InternationalProvider:
     @staticmethod
     def create(country: Country) -> InternationalFactory:
-        if country is Country.ENGLAND:
-            return EnglandFactory()
-        elif country is Country.SPAIN:
-            return SpainFactory()
-        else:
-            raise ValueError(f"{country} is not currently supported.")
+        match country:
+            case Country.ENGLAND:
+                return EnglandFactory()
+            case Country.SPAIN:
+                return SpainFactory()
+            case _:
+                raise ValueError(f"{country} is not currently supported.")
